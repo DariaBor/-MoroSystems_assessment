@@ -1,0 +1,20 @@
+{
+  "name": "morosystems-assessment",
+  "version": "1.0.0",
+  "description": "Playwright automation tests for MoroSystems assessment",
+  "scripts": {
+    "test:api": "playwright test tests/api --project=api",
+    "test:careers:headed": "TEST_MODE=single playwright test tests/ui/careers.ui.spec.ts --headed --project=chromium-desktop",
+    "test:chromium": "cross-env TEST_MODE=single playwright test --project=chromium-desktop",
+    "test:firefox": "cross-env TEST_MODE=single playwright test --project=firefox-desktop",
+    "test:safari": "cross-env TEST_MODE=single playwright test --project=safari-desktop",
+    "report": "playwright show-report",
+    "generate:api": "openapi-typescript http://localhost:8080/v3/api-docs -o src/api/generated/schema.ts"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.59.1",
+    "@types/node": "^25.5.2",
+    "openapi-typescript": "^7.13.0",
+    "typescript": "^5.4.0"
+  }
+}

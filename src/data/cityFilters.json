@@ -1,0 +1,11 @@
+{
+  "cities": [
+    { "label": "Všechna města", "value": "" },
+    { "label": "Brno", "value": "Brno" },
+    { "label": "Praha", "value": "Praha" },
+    { "label": "Hradec Králové", "value": "Hradec Králové" },
+    { "label": "Bratislava", "value": "Bratislava" },
+    { "label": "home office", "value": "home office" }
+  ],
+  "defaultCity": "Brno"
+}
