@@ -9,10 +9,19 @@ export type UpdateTask = components["schemas"]["UpdateTask"];
 export type ApiResult<T> = {
   status: number;
   body: T;
+  debug: string;
 };
 
 async function parseResponse<T>(res: APIResponse): Promise<ApiResult<T>> {
-  return { status: res.status(), body: await res.json() };
+  const text = await res.text();
+  let body: T;
+  try {
+    body = text.length > 0 ? JSON.parse(text) : (text as unknown as T);
+  } catch {
+    body = text as unknown as T;
+  }
+  const debug = `\n← ${res.status()} ${res.url()} | body: ${text || "(empty)"}`;
+  return { status: res.status(), body, debug };
 }
 
 export class TasksApi {
@@ -40,10 +49,14 @@ export class TasksApi {
   }
 
   async completeTask(id: string): Promise<ApiResult<Task>> {
-    return parseResponse<Task>(await this.apiClient.post(`/tasks/${id}/complete`, undefined));
+    return parseResponse<Task>(
+      await this.apiClient.post(`/tasks/${id}/complete`, undefined),
+    );
   }
 
   async incompleteTask(id: string): Promise<ApiResult<Task>> {
-    return parseResponse<Task>(await this.apiClient.post(`/tasks/${id}/incomplete`, undefined));
+    return parseResponse<Task>(
+      await this.apiClient.post(`/tasks/${id}/incomplete`, undefined),
+    );
   }
 }
