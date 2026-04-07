@@ -14,7 +14,9 @@ const cities: City[] =
         (c: City) => c.value === cityFilters.defaultCity,
       );
 
-const GOOGLE_URL = "https://www.google.com";
+// Force Czech locale/location so Google returns Czech results (morosystems.cz)
+// and the /kariera/ page is reachable beccause it is absent on other web lovations
+const GOOGLE_URL = "https://www.google.com/?gl=cz&hl=cs";
 const MOROSYSTEMS_CAREER_LINK = "/kariera/";
 
 for (const city of cities) {

@@ -18,6 +18,7 @@ export default defineConfig({
     launchOptions: {
       args: ["--disable-blink-features=AutomationControlled"],
     },
+    locale: "cs-CZ",
   },
   // i defiend some possible projects (3 browsers and 3 viewports) here, but you can adjust this list to run only a subset of them if needed, ideally split all ui tests into separate files according to the target viewport (e.g. careers.ui.spec.ts, careers.mobile.spec.ts) and configure testMatch in each project to run only the relevant tests, usefule for CICD pipelines
   projects: [
